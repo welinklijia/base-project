@@ -4,3 +4,8 @@
 /base-common/*.project
 /base-common/.settings
 /base-common/target
+/base-database/target
+/base-redis/.settings
+/base-redis/target
+/base-redis/.classpath
+/base-redis/.project
