@@ -10,3 +10,6 @@
 /base-redis/.classpath
 /base-redis/.project
 !/base-database/src
+/base-database/.settings
+/base-database/.classpath
+/base-database/.project
