@@ -2,15 +2,15 @@
 <!DOCTYPE mapper   
 PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
 "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
-<mapper namespace="com.database.mybatis.pojo.UserDao">
+<mapper namespace="com.mybatis.study.dao.UserDao">
  
-	<select id="findUserById" resultType="com.database.mybatis.pojo.UserPojo">
+	<select id="findUserById" resultType="com.mybatis.study.entity.UserEntity">
 		select * from user where id = #{id}
 	</select>
- 	<insert id="addUser" parameterType="com.database.mybatis.pojo.UserPojo" useGeneratedKeys="true" keyProperty="id">
+ 	<insert id="addUser" parameterType="com.mybatis.study.entity.UserEntity" useGeneratedKeys="true" keyProperty="id">
  		insert into user(username,password,age) values(#{username},#{password},#{age})
  	</insert>
- 	<update id="updateUser" parameterType="com.database.mybatis.pojo.UserPojo">
+ 	<update id="updateUser" parameterType="com.mybatis.study.entity.UserEntity">
  		update user set username=#{username},password=#{password},age=#{age} where id=#{id}
  	</update>
  	<delete id="deleteUser" parameterType="int">
