@@ -16,6 +16,6 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="com/database/mybatis/pojo/UserDaoMapper.xml"/>
+    <mapper resource="mapper/UserDaoMapper.xml"/>
   </mappers>
 </configuration>

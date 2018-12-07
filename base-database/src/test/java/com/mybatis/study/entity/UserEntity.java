@@ -1,6 +1,6 @@
-package com.database.mybatis.pojo;
+package com.mybatis.study.entity;
 
-public class UserPojo {
+public class UserEntity {
 	private int id;
 	private String username;
 	private String password;
@@ -41,5 +41,4 @@ public class UserPojo {
 		// TODO Auto-generated method stub
 		return "name:"+username+",password:"+password+",age:"+age;
 	}
-	
 }
