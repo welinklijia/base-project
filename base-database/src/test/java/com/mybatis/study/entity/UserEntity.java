@@ -1,11 +1,14 @@
 package com.mybatis.study.entity;
 
+import com.mybatis.study.constant.Sex;
+
 public class UserEntity {
 	private int id;
 	private String username;
 	private String password;
 	private int age;
 	private int valid;
+	private Sex sex;
 	public int getId() {
 		return id;
 	}
@@ -36,9 +39,15 @@ public class UserEntity {
 	public void setValid(int valid) {
 		this.valid = valid;
 	}
+	public Sex getSex() {
+		return sex;
+	}
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "name:"+username+",password:"+password+",age:"+age;
+		return "name:"+username+",password:"+password+",age:"+age+",性别:"+sex.getName();
 	}
 }

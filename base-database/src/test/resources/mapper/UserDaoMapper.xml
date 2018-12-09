@@ -3,8 +3,15 @@
 PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
 "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.study.dao.UserDao">
- 
-	<select id="findUserById" resultType="com.mybatis.study.entity.UserEntity">
+ 	<resultMap type="com.mybatis.study.entity.UserEntity" id="userEntity">
+ 		<result property="id" column="id"/>
+ 		<result property="username" column="username"/>
+ 		<result property="password" column="password"/>
+ 		<result property="age" column="age"/>
+ 		<result property="valid" column="valid"/>
+ 		<result property="sex" column="sex" javaType="com.mybatis.study.constant.Sex" jdbcType="INTEGER" typeHandler="com.mybatis.study.SexHandleType"/>
+ 	</resultMap>
+	<select id="findUserById" resultMap="userEntity">
 		select * from user where id = #{id}
 	</select>
  	<insert id="addUser" parameterType="com.mybatis.study.entity.UserEntity" useGeneratedKeys="true" keyProperty="id">

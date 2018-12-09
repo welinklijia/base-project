@@ -16,7 +16,7 @@ import com.mybatis.study.entity.UserEntity;
 
 public class UserDaoTest {
 	Logger logger = LoggerFactory.getLogger(UserDaoTest.class);
-	private int id = 7;
+	private int id = 1;
 	@Test
 	public void findUserById(){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
