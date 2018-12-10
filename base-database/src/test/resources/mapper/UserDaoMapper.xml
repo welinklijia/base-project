@@ -10,6 +10,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
  		<result property="age" column="age"/>
  		<result property="valid" column="valid"/>
  		<result property="sex" column="sex" javaType="com.mybatis.study.constant.Sex" jdbcType="INTEGER" typeHandler="com.mybatis.study.SexHandleType"/>
+ 		<collection property="listRole" column="id" javaType="ArrayList" ofType="roleEnity">
+ 			<id property="id" column="id"/>
+ 			<result property="roleName" column="rolename"/>
+ 			<result property="insertTime" column="inserttime"/>
+ 			<result property="valid" column="valid"/>
+ 		</collection>
  	</resultMap>
 	<select id="findUserById" resultMap="userEntity">
 		select * from user where id = #{id}

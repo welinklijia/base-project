@@ -19,7 +19,7 @@ public class UserDaoTest {
 	private int id = 1;
 	@Test
 	public void findUserById(){
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		SqlSession sqlSession = SqlSessionFactoryUtil.getSqlSessionFactory().openSession();
 		UserDao userDao = sqlSession.getMapper(UserDao.class);
 		UserEntity userEntity = userDao.findUserById(id);
 		logger.info("查询结果:{}",userEntity);
@@ -28,7 +28,7 @@ public class UserDaoTest {
 	@Test
 	public void addUser(){
 		//关闭事物为true
-		SqlSession sqlSession = getSqlSessionFactory().openSession(true);
+		SqlSession sqlSession = SqlSessionFactoryUtil.getSqlSessionFactory().openSession(true);
 		UserDao userDao = sqlSession.getMapper(UserDao.class);
 		UserEntity user = new UserEntity();
 		user.setUsername("九哥");
@@ -39,7 +39,7 @@ public class UserDaoTest {
 	}
 	@Test
 	public void updateUser(){
-		SqlSession sqlSession = getSqlSessionFactory().openSession(true);
+		SqlSession sqlSession = SqlSessionFactoryUtil.getSqlSessionFactory().openSession(true);
 		UserDao userDao = sqlSession.getMapper(UserDao.class);
 		UserEntity user = userDao.findUserById(id);
 		logger.info("将要修改的用户为:{}",user);
@@ -52,7 +52,7 @@ public class UserDaoTest {
 	}
 	@Test
 	public void deleteUser(){
-		SqlSession sqlSession = getSqlSessionFactory().openSession(true);
+		SqlSession sqlSession = SqlSessionFactoryUtil.getSqlSessionFactory().openSession(true);
 		UserDao userDao = sqlSession.getMapper(UserDao.class);
 		userDao.deleteUser(1);
 		UserEntity user = userDao.findUserById(id);
@@ -60,16 +60,5 @@ public class UserDaoTest {
 			logger.info("用户id为{}的用户已经被删除",id);
 		}
 		sqlSession.close();
-	}
-	private SqlSessionFactory getSqlSessionFactory(){
-		String mybatisConfig="mybatis.xml";
-		SqlSessionFactoryBuilder factoryBuilder = new SqlSessionFactoryBuilder();
-		Reader reader = null;
-		try {
-			 reader = Resources.getResourceAsReader(mybatisConfig);
-		} catch (IOException e) {
-			logger.error("读取mybatis配置文件报错:{}",e);
-		}
-		return factoryBuilder.build(reader);
 	}
 }

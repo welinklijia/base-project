@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.study.dao.ResourceDao">
+	<insert id="addResource" parameterType="resourceEntity">
+		insert into resource (resource_name,resource_url,resource_type,insert_time) values (#{resourceName},#{url},#{type},#{insertTime})
+	</insert>
+	<update id="updateResource" parameterType="resourceEntity">
+		update resource set resource_name=#{resourceName},resource_url=#{url},resource_type=#{type},insert_time=#{insertTime} where id=#{id}
+	</update>
+	<delete id="deleteResource" parameterType="int">
+		delete from resource where id=#{id}
+	</delete>
+	<select id="findById" parameterType="int" resultType="resourceEntity">
+		select * from resource where valid=1 and id=#{id}	
+	</select>
+	<select id="findAllResource" resultType="list">
+		select * from resource where valid=1
+	</select>
+</mapper>
