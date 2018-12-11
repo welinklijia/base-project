@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<properties resource="jdbc.properties"/>
-  <environments default="produce">
+  <properties resource="jdbc.properties"/>
+  <environments default="produceoracle">
   <!-- 
   environments标签下可以配置多个environment,通过default属性与id属性匹配.
   mybatis配置多个数据源,
@@ -29,21 +29,41 @@
            <property name="initialSize" value="1" />
            <property name="minIdle" value="1" />
            <property name="maxActive" value="20" />
-
            <!-- 配置获取连接等待超时的时间 -->
            <property name="maxWait" value="60000" />
-
            <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
            <property name="timeBetweenEvictionRunsMillis" value="60000" />
-
            <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
            <property name="minEvictableIdleTimeMillis" value="300000" />
-
            <property name="validationQuery" value="SELECT 'x'" />
            <property name="testWhileIdle" value="true" />
            <property name="testOnBorrow" value="false" />
            <property name="testOnReturn" value="false" />
-
+           <!-- 配置监控统计拦截的filters，去掉后监控界面sql无法统计 -->
+           <property name="filters" value="stat" />
+    	</dataSource>
+    </environment>
+    <environment id="produceoracle">
+    	<transactionManager type="JDBC"></transactionManager>
+    	<dataSource type="com.mybatis.study.external.dataSource.DruidDataSourceFactory">
+	   	   <!--  <property name="driver" value="${mysql.driver}"/>-->
+	       <property name="url" value="${oracle.driver-url}"/>
+	       <property name="username" value="${oracle.username}"/>
+	       <property name="password" value="${oracle.password}"/>
+	       <!-- 配置初始化大小、最小、最大 -->
+           <property name="initialSize" value="1" />
+           <property name="minIdle" value="1" />
+           <property name="maxActive" value="20" />
+           <!-- 配置获取连接等待超时的时间 -->
+           <property name="maxWait" value="60000" />
+           <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+           <property name="timeBetweenEvictionRunsMillis" value="60000" />
+           <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+           <property name="minEvictableIdleTimeMillis" value="300000" />
+           <property name="validationQuery" value="${oracle.house-keeping-test-sql}" />
+           <property name="testWhileIdle" value="true" />
+           <property name="testOnBorrow" value="false" />
+           <property name="testOnReturn" value="false" />
            <!-- 配置监控统计拦截的filters，去掉后监控界面sql无法统计 -->
            <property name="filters" value="stat" />
     	</dataSource>
