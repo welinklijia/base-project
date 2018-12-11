@@ -1,0 +1,1062 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.study.dao.RuleFileMapper">
+  <resultMap id="BaseResultMap" type="com.mybatis.study.entity.RuleFile">
+    <id column="SER_FILE_ID" jdbcType="DECIMAL" property="serFileId" />
+    <result column="DIRECTORYS" jdbcType="VARCHAR" property="directorys" />
+    <result column="FILE_NAME" jdbcType="VARCHAR" property="fileName" />
+    <result column="OPT_PERSON" jdbcType="VARCHAR" property="optPerson" />
+    <result column="NEW_FILE" jdbcType="VARCHAR" property="newFile" />
+    <result column="CHANGE_TIME" jdbcType="TIMESTAMP" property="changeTime" />
+    <result column="IN_USE" jdbcType="CHAR" property="inUse" />
+    <result column="ALARM_ID_NUM" jdbcType="DECIMAL" property="alarmIdNum" />
+    <result column="RULE_NAME" jdbcType="VARCHAR" property="ruleName" />
+    <result column="RELATION_TYPE" jdbcType="DECIMAL" property="relationType" />
+    <result column="PROFESSIONAL_TYPE" jdbcType="DECIMAL" property="professionalType" />
+    <result column="VENDOR_ID" jdbcType="DECIMAL" property="vendorId" />
+    <result column="RULEDESC" jdbcType="VARCHAR" property="ruledesc" />
+    <result column="USER_ID" jdbcType="DECIMAL" property="userId" />
+    <result column="IS_LOCAL_RULE" jdbcType="CHAR" property="isLocalRule" />
+    <result column="RELATION_CONDITION" jdbcType="VARCHAR" property="relationCondition" />
+    <result column="RELATION_POSITION_INFO" jdbcType="VARCHAR" property="relationPositionInfo" />
+    <result column="USE_RESOURCES" jdbcType="VARCHAR" property="useResources" />
+    <result column="PRO_RESCONFIG" jdbcType="VARCHAR" property="proResconfig" />
+    <result column="EXT_RESCONFIG" jdbcType="VARCHAR" property="extResconfig" />
+    <result column="ALARM_CONTENT" jdbcType="VARCHAR" property="alarmContent" />
+    <result column="RULE_DEF_USER" jdbcType="VARCHAR" property="ruleDefUser" />
+    <result column="RULE_DEF_PHONE" jdbcType="VARCHAR" property="ruleDefPhone" />
+    <result column="EQP_OBJECT_CLASS" jdbcType="VARCHAR" property="eqpObjectClass" />
+    <result column="TOPIC_IDLIST" jdbcType="VARCHAR" property="topicIdlist" />
+    <result column="FILTER_ID" jdbcType="VARCHAR" property="filterId" />
+    <result column="PHONE_NUM" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="FIRE_POINT" jdbcType="DECIMAL" property="firePoint" />
+    <result column="ACTIVE_TIME_OUT" jdbcType="VARCHAR" property="activeTimeOut" />
+    <result column="COUNT_TYPE" jdbcType="DECIMAL" property="countType" />
+    <result column="THRESH_HOLD" jdbcType="DECIMAL" property="threshHold" />
+    <result column="THRESH_HOLD_REFER_SQL" jdbcType="VARCHAR" property="threshHoldReferSql" />
+    <result column="CHANGE_STATUS" jdbcType="DECIMAL" property="changeStatus" />
+    <result column="PROJECT_SURPRESS" jdbcType="DECIMAL" property="projectSurpress" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="DEALED_PROCESS_ALIAS" jdbcType="VARCHAR" property="dealedProcessAlias" />
+    <result column="RELATION_NAME" jdbcType="VARCHAR" property="relationName" />
+    <result column="WHILELIST_PROVINCE" jdbcType="VARCHAR" property="whilelistProvince" />
+    <result column="BLACKLIST_PROVINCE" jdbcType="VARCHAR" property="blacklistProvince" />
+    <result column="WHITELIST_PROVINCE" jdbcType="VARCHAR" property="whitelistProvince" />
+    <result column="REASON_TYPE" jdbcType="DECIMAL" property="reasonType" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.mybatis.study.entity.RuleFile">
+    <result column="RULE_CONTENT" jdbcType="CLOB" property="ruleContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SER_FILE_ID, DIRECTORYS, FILE_NAME, OPT_PERSON, NEW_FILE, CHANGE_TIME, IN_USE, ALARM_ID_NUM, 
+    RULE_NAME, RELATION_TYPE, PROFESSIONAL_TYPE, VENDOR_ID, RULEDESC, USER_ID, IS_LOCAL_RULE, 
+    RELATION_CONDITION, RELATION_POSITION_INFO, USE_RESOURCES, PRO_RESCONFIG, EXT_RESCONFIG, 
+    ALARM_CONTENT, RULE_DEF_USER, RULE_DEF_PHONE, EQP_OBJECT_CLASS, TOPIC_IDLIST, FILTER_ID, 
+    PHONE_NUM, FIRE_POINT, ACTIVE_TIME_OUT, COUNT_TYPE, THRESH_HOLD, THRESH_HOLD_REFER_SQL, 
+    CHANGE_STATUS, PROJECT_SURPRESS, CREATE_TIME, DEALED_PROCESS_ALIAS, RELATION_NAME, 
+    WHILELIST_PROVINCE, BLACKLIST_PROVINCE, WHITELIST_PROVINCE, REASON_TYPE
+  </sql>
+  <sql id="Blob_Column_List">
+    RULE_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from TFA_GAIA_RULE_FILE
+    where SER_FILE_ID = #{serFileId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from TFA_GAIA_RULE_FILE
+    where SER_FILE_ID = #{serFileId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.mybatis.study.entity.RuleFile">
+    insert into TFA_GAIA_RULE_FILE (SER_FILE_ID, DIRECTORYS, FILE_NAME, 
+      OPT_PERSON, NEW_FILE, CHANGE_TIME, 
+      IN_USE, ALARM_ID_NUM, RULE_NAME, 
+      RELATION_TYPE, PROFESSIONAL_TYPE, VENDOR_ID, 
+      RULEDESC, USER_ID, IS_LOCAL_RULE, 
+      RELATION_CONDITION, RELATION_POSITION_INFO, 
+      USE_RESOURCES, PRO_RESCONFIG, EXT_RESCONFIG, 
+      ALARM_CONTENT, RULE_DEF_USER, RULE_DEF_PHONE, 
+      EQP_OBJECT_CLASS, TOPIC_IDLIST, FILTER_ID, 
+      PHONE_NUM, FIRE_POINT, ACTIVE_TIME_OUT, 
+      COUNT_TYPE, THRESH_HOLD, THRESH_HOLD_REFER_SQL, 
+      CHANGE_STATUS, PROJECT_SURPRESS, CREATE_TIME, 
+      DEALED_PROCESS_ALIAS, RELATION_NAME, WHILELIST_PROVINCE, 
+      BLACKLIST_PROVINCE, WHITELIST_PROVINCE, REASON_TYPE, 
+      RULE_CONTENT)
+    values (#{serFileId,jdbcType=DECIMAL}, #{directorys,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, 
+      #{optPerson,jdbcType=VARCHAR}, #{newFile,jdbcType=VARCHAR}, #{changeTime,jdbcType=TIMESTAMP}, 
+      #{inUse,jdbcType=CHAR}, #{alarmIdNum,jdbcType=DECIMAL}, #{ruleName,jdbcType=VARCHAR}, 
+      #{relationType,jdbcType=DECIMAL}, #{professionalType,jdbcType=DECIMAL}, #{vendorId,jdbcType=DECIMAL}, 
+      #{ruledesc,jdbcType=VARCHAR}, #{userId,jdbcType=DECIMAL}, #{isLocalRule,jdbcType=CHAR}, 
+      #{relationCondition,jdbcType=VARCHAR}, #{relationPositionInfo,jdbcType=VARCHAR}, 
+      #{useResources,jdbcType=VARCHAR}, #{proResconfig,jdbcType=VARCHAR}, #{extResconfig,jdbcType=VARCHAR}, 
+      #{alarmContent,jdbcType=VARCHAR}, #{ruleDefUser,jdbcType=VARCHAR}, #{ruleDefPhone,jdbcType=VARCHAR}, 
+      #{eqpObjectClass,jdbcType=VARCHAR}, #{topicIdlist,jdbcType=VARCHAR}, #{filterId,jdbcType=VARCHAR}, 
+      #{phoneNum,jdbcType=VARCHAR}, #{firePoint,jdbcType=DECIMAL}, #{activeTimeOut,jdbcType=VARCHAR}, 
+      #{countType,jdbcType=DECIMAL}, #{threshHold,jdbcType=DECIMAL}, #{threshHoldReferSql,jdbcType=VARCHAR}, 
+      #{changeStatus,jdbcType=DECIMAL}, #{projectSurpress,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{dealedProcessAlias,jdbcType=VARCHAR}, #{relationName,jdbcType=VARCHAR}, #{whilelistProvince,jdbcType=VARCHAR}, 
+      #{blacklistProvince,jdbcType=VARCHAR}, #{whitelistProvince,jdbcType=VARCHAR}, #{reasonType,jdbcType=DECIMAL}, 
+      #{ruleContent,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mybatis.study.entity.RuleFile">
+    insert into TFA_GAIA_RULE_FILE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serFileId != null">
+        SER_FILE_ID,
+      </if>
+      <if test="directorys != null">
+        DIRECTORYS,
+      </if>
+      <if test="fileName != null">
+        FILE_NAME,
+      </if>
+      <if test="optPerson != null">
+        OPT_PERSON,
+      </if>
+      <if test="newFile != null">
+        NEW_FILE,
+      </if>
+      <if test="changeTime != null">
+        CHANGE_TIME,
+      </if>
+      <if test="inUse != null">
+        IN_USE,
+      </if>
+      <if test="alarmIdNum != null">
+        ALARM_ID_NUM,
+      </if>
+      <if test="ruleName != null">
+        RULE_NAME,
+      </if>
+      <if test="relationType != null">
+        RELATION_TYPE,
+      </if>
+      <if test="professionalType != null">
+        PROFESSIONAL_TYPE,
+      </if>
+      <if test="vendorId != null">
+        VENDOR_ID,
+      </if>
+      <if test="ruledesc != null">
+        RULEDESC,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="isLocalRule != null">
+        IS_LOCAL_RULE,
+      </if>
+      <if test="relationCondition != null">
+        RELATION_CONDITION,
+      </if>
+      <if test="relationPositionInfo != null">
+        RELATION_POSITION_INFO,
+      </if>
+      <if test="useResources != null">
+        USE_RESOURCES,
+      </if>
+      <if test="proResconfig != null">
+        PRO_RESCONFIG,
+      </if>
+      <if test="extResconfig != null">
+        EXT_RESCONFIG,
+      </if>
+      <if test="alarmContent != null">
+        ALARM_CONTENT,
+      </if>
+      <if test="ruleDefUser != null">
+        RULE_DEF_USER,
+      </if>
+      <if test="ruleDefPhone != null">
+        RULE_DEF_PHONE,
+      </if>
+      <if test="eqpObjectClass != null">
+        EQP_OBJECT_CLASS,
+      </if>
+      <if test="topicIdlist != null">
+        TOPIC_IDLIST,
+      </if>
+      <if test="filterId != null">
+        FILTER_ID,
+      </if>
+      <if test="phoneNum != null">
+        PHONE_NUM,
+      </if>
+      <if test="firePoint != null">
+        FIRE_POINT,
+      </if>
+      <if test="activeTimeOut != null">
+        ACTIVE_TIME_OUT,
+      </if>
+      <if test="countType != null">
+        COUNT_TYPE,
+      </if>
+      <if test="threshHold != null">
+        THRESH_HOLD,
+      </if>
+      <if test="threshHoldReferSql != null">
+        THRESH_HOLD_REFER_SQL,
+      </if>
+      <if test="changeStatus != null">
+        CHANGE_STATUS,
+      </if>
+      <if test="projectSurpress != null">
+        PROJECT_SURPRESS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="dealedProcessAlias != null">
+        DEALED_PROCESS_ALIAS,
+      </if>
+      <if test="relationName != null">
+        RELATION_NAME,
+      </if>
+      <if test="whilelistProvince != null">
+        WHILELIST_PROVINCE,
+      </if>
+      <if test="blacklistProvince != null">
+        BLACKLIST_PROVINCE,
+      </if>
+      <if test="whitelistProvince != null">
+        WHITELIST_PROVINCE,
+      </if>
+      <if test="reasonType != null">
+        REASON_TYPE,
+      </if>
+      <if test="ruleContent != null">
+        RULE_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serFileId != null">
+        #{serFileId,jdbcType=DECIMAL},
+      </if>
+      <if test="directorys != null">
+        #{directorys,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="optPerson != null">
+        #{optPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="newFile != null">
+        #{newFile,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null">
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inUse != null">
+        #{inUse,jdbcType=CHAR},
+      </if>
+      <if test="alarmIdNum != null">
+        #{alarmIdNum,jdbcType=DECIMAL},
+      </if>
+      <if test="ruleName != null">
+        #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="relationType != null">
+        #{relationType,jdbcType=DECIMAL},
+      </if>
+      <if test="professionalType != null">
+        #{professionalType,jdbcType=DECIMAL},
+      </if>
+      <if test="vendorId != null">
+        #{vendorId,jdbcType=DECIMAL},
+      </if>
+      <if test="ruledesc != null">
+        #{ruledesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="isLocalRule != null">
+        #{isLocalRule,jdbcType=CHAR},
+      </if>
+      <if test="relationCondition != null">
+        #{relationCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="relationPositionInfo != null">
+        #{relationPositionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="useResources != null">
+        #{useResources,jdbcType=VARCHAR},
+      </if>
+      <if test="proResconfig != null">
+        #{proResconfig,jdbcType=VARCHAR},
+      </if>
+      <if test="extResconfig != null">
+        #{extResconfig,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmContent != null">
+        #{alarmContent,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDefUser != null">
+        #{ruleDefUser,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDefPhone != null">
+        #{ruleDefPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="eqpObjectClass != null">
+        #{eqpObjectClass,jdbcType=VARCHAR},
+      </if>
+      <if test="topicIdlist != null">
+        #{topicIdlist,jdbcType=VARCHAR},
+      </if>
+      <if test="filterId != null">
+        #{filterId,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="firePoint != null">
+        #{firePoint,jdbcType=DECIMAL},
+      </if>
+      <if test="activeTimeOut != null">
+        #{activeTimeOut,jdbcType=VARCHAR},
+      </if>
+      <if test="countType != null">
+        #{countType,jdbcType=DECIMAL},
+      </if>
+      <if test="threshHold != null">
+        #{threshHold,jdbcType=DECIMAL},
+      </if>
+      <if test="threshHoldReferSql != null">
+        #{threshHoldReferSql,jdbcType=VARCHAR},
+      </if>
+      <if test="changeStatus != null">
+        #{changeStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="projectSurpress != null">
+        #{projectSurpress,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealedProcessAlias != null">
+        #{dealedProcessAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="relationName != null">
+        #{relationName,jdbcType=VARCHAR},
+      </if>
+      <if test="whilelistProvince != null">
+        #{whilelistProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="blacklistProvince != null">
+        #{blacklistProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="whitelistProvince != null">
+        #{whitelistProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="reasonType != null">
+        #{reasonType,jdbcType=DECIMAL},
+      </if>
+      <if test="ruleContent != null">
+        #{ruleContent,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mybatis.study.entity.RuleFile">
+    update TFA_GAIA_RULE_FILE
+    <set>
+      <if test="directorys != null">
+        DIRECTORYS = #{directorys,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="optPerson != null">
+        OPT_PERSON = #{optPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="newFile != null">
+        NEW_FILE = #{newFile,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null">
+        CHANGE_TIME = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inUse != null">
+        IN_USE = #{inUse,jdbcType=CHAR},
+      </if>
+      <if test="alarmIdNum != null">
+        ALARM_ID_NUM = #{alarmIdNum,jdbcType=DECIMAL},
+      </if>
+      <if test="ruleName != null">
+        RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="relationType != null">
+        RELATION_TYPE = #{relationType,jdbcType=DECIMAL},
+      </if>
+      <if test="professionalType != null">
+        PROFESSIONAL_TYPE = #{professionalType,jdbcType=DECIMAL},
+      </if>
+      <if test="vendorId != null">
+        VENDOR_ID = #{vendorId,jdbcType=DECIMAL},
+      </if>
+      <if test="ruledesc != null">
+        RULEDESC = #{ruledesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="isLocalRule != null">
+        IS_LOCAL_RULE = #{isLocalRule,jdbcType=CHAR},
+      </if>
+      <if test="relationCondition != null">
+        RELATION_CONDITION = #{relationCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="relationPositionInfo != null">
+        RELATION_POSITION_INFO = #{relationPositionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="useResources != null">
+        USE_RESOURCES = #{useResources,jdbcType=VARCHAR},
+      </if>
+      <if test="proResconfig != null">
+        PRO_RESCONFIG = #{proResconfig,jdbcType=VARCHAR},
+      </if>
+      <if test="extResconfig != null">
+        EXT_RESCONFIG = #{extResconfig,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmContent != null">
+        ALARM_CONTENT = #{alarmContent,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDefUser != null">
+        RULE_DEF_USER = #{ruleDefUser,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDefPhone != null">
+        RULE_DEF_PHONE = #{ruleDefPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="eqpObjectClass != null">
+        EQP_OBJECT_CLASS = #{eqpObjectClass,jdbcType=VARCHAR},
+      </if>
+      <if test="topicIdlist != null">
+        TOPIC_IDLIST = #{topicIdlist,jdbcType=VARCHAR},
+      </if>
+      <if test="filterId != null">
+        FILTER_ID = #{filterId,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="firePoint != null">
+        FIRE_POINT = #{firePoint,jdbcType=DECIMAL},
+      </if>
+      <if test="activeTimeOut != null">
+        ACTIVE_TIME_OUT = #{activeTimeOut,jdbcType=VARCHAR},
+      </if>
+      <if test="countType != null">
+        COUNT_TYPE = #{countType,jdbcType=DECIMAL},
+      </if>
+      <if test="threshHold != null">
+        THRESH_HOLD = #{threshHold,jdbcType=DECIMAL},
+      </if>
+      <if test="threshHoldReferSql != null">
+        THRESH_HOLD_REFER_SQL = #{threshHoldReferSql,jdbcType=VARCHAR},
+      </if>
+      <if test="changeStatus != null">
+        CHANGE_STATUS = #{changeStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="projectSurpress != null">
+        PROJECT_SURPRESS = #{projectSurpress,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealedProcessAlias != null">
+        DEALED_PROCESS_ALIAS = #{dealedProcessAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="relationName != null">
+        RELATION_NAME = #{relationName,jdbcType=VARCHAR},
+      </if>
+      <if test="whilelistProvince != null">
+        WHILELIST_PROVINCE = #{whilelistProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="blacklistProvince != null">
+        BLACKLIST_PROVINCE = #{blacklistProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="whitelistProvince != null">
+        WHITELIST_PROVINCE = #{whitelistProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="reasonType != null">
+        REASON_TYPE = #{reasonType,jdbcType=DECIMAL},
+      </if>
+      <if test="ruleContent != null">
+        RULE_CONTENT = #{ruleContent,jdbcType=CLOB},
+      </if>
+    </set>
+    where SER_FILE_ID = #{serFileId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mybatis.study.entity.RuleFile">
+    update TFA_GAIA_RULE_FILE
+    set DIRECTORYS = #{directorys,jdbcType=VARCHAR},
+      FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      OPT_PERSON = #{optPerson,jdbcType=VARCHAR},
+      NEW_FILE = #{newFile,jdbcType=VARCHAR},
+      CHANGE_TIME = #{changeTime,jdbcType=TIMESTAMP},
+      IN_USE = #{inUse,jdbcType=CHAR},
+      ALARM_ID_NUM = #{alarmIdNum,jdbcType=DECIMAL},
+      RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+      RELATION_TYPE = #{relationType,jdbcType=DECIMAL},
+      PROFESSIONAL_TYPE = #{professionalType,jdbcType=DECIMAL},
+      VENDOR_ID = #{vendorId,jdbcType=DECIMAL},
+      RULEDESC = #{ruledesc,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      IS_LOCAL_RULE = #{isLocalRule,jdbcType=CHAR},
+      RELATION_CONDITION = #{relationCondition,jdbcType=VARCHAR},
+      RELATION_POSITION_INFO = #{relationPositionInfo,jdbcType=VARCHAR},
+      USE_RESOURCES = #{useResources,jdbcType=VARCHAR},
+      PRO_RESCONFIG = #{proResconfig,jdbcType=VARCHAR},
+      EXT_RESCONFIG = #{extResconfig,jdbcType=VARCHAR},
+      ALARM_CONTENT = #{alarmContent,jdbcType=VARCHAR},
+      RULE_DEF_USER = #{ruleDefUser,jdbcType=VARCHAR},
+      RULE_DEF_PHONE = #{ruleDefPhone,jdbcType=VARCHAR},
+      EQP_OBJECT_CLASS = #{eqpObjectClass,jdbcType=VARCHAR},
+      TOPIC_IDLIST = #{topicIdlist,jdbcType=VARCHAR},
+      FILTER_ID = #{filterId,jdbcType=VARCHAR},
+      PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+      FIRE_POINT = #{firePoint,jdbcType=DECIMAL},
+      ACTIVE_TIME_OUT = #{activeTimeOut,jdbcType=VARCHAR},
+      COUNT_TYPE = #{countType,jdbcType=DECIMAL},
+      THRESH_HOLD = #{threshHold,jdbcType=DECIMAL},
+      THRESH_HOLD_REFER_SQL = #{threshHoldReferSql,jdbcType=VARCHAR},
+      CHANGE_STATUS = #{changeStatus,jdbcType=DECIMAL},
+      PROJECT_SURPRESS = #{projectSurpress,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      DEALED_PROCESS_ALIAS = #{dealedProcessAlias,jdbcType=VARCHAR},
+      RELATION_NAME = #{relationName,jdbcType=VARCHAR},
+      WHILELIST_PROVINCE = #{whilelistProvince,jdbcType=VARCHAR},
+      BLACKLIST_PROVINCE = #{blacklistProvince,jdbcType=VARCHAR},
+      WHITELIST_PROVINCE = #{whitelistProvince,jdbcType=VARCHAR},
+      REASON_TYPE = #{reasonType,jdbcType=DECIMAL},
+      RULE_CONTENT = #{ruleContent,jdbcType=CLOB}
+    where SER_FILE_ID = #{serFileId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mybatis.study.entity.RuleFile">
+    update TFA_GAIA_RULE_FILE
+    set DIRECTORYS = #{directorys,jdbcType=VARCHAR},
+      FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      OPT_PERSON = #{optPerson,jdbcType=VARCHAR},
+      NEW_FILE = #{newFile,jdbcType=VARCHAR},
+      CHANGE_TIME = #{changeTime,jdbcType=TIMESTAMP},
+      IN_USE = #{inUse,jdbcType=CHAR},
+      ALARM_ID_NUM = #{alarmIdNum,jdbcType=DECIMAL},
+      RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+      RELATION_TYPE = #{relationType,jdbcType=DECIMAL},
+      PROFESSIONAL_TYPE = #{professionalType,jdbcType=DECIMAL},
+      VENDOR_ID = #{vendorId,jdbcType=DECIMAL},
+      RULEDESC = #{ruledesc,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      IS_LOCAL_RULE = #{isLocalRule,jdbcType=CHAR},
+      RELATION_CONDITION = #{relationCondition,jdbcType=VARCHAR},
+      RELATION_POSITION_INFO = #{relationPositionInfo,jdbcType=VARCHAR},
+      USE_RESOURCES = #{useResources,jdbcType=VARCHAR},
+      PRO_RESCONFIG = #{proResconfig,jdbcType=VARCHAR},
+      EXT_RESCONFIG = #{extResconfig,jdbcType=VARCHAR},
+      ALARM_CONTENT = #{alarmContent,jdbcType=VARCHAR},
+      RULE_DEF_USER = #{ruleDefUser,jdbcType=VARCHAR},
+      RULE_DEF_PHONE = #{ruleDefPhone,jdbcType=VARCHAR},
+      EQP_OBJECT_CLASS = #{eqpObjectClass,jdbcType=VARCHAR},
+      TOPIC_IDLIST = #{topicIdlist,jdbcType=VARCHAR},
+      FILTER_ID = #{filterId,jdbcType=VARCHAR},
+      PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+      FIRE_POINT = #{firePoint,jdbcType=DECIMAL},
+      ACTIVE_TIME_OUT = #{activeTimeOut,jdbcType=VARCHAR},
+      COUNT_TYPE = #{countType,jdbcType=DECIMAL},
+      THRESH_HOLD = #{threshHold,jdbcType=DECIMAL},
+      THRESH_HOLD_REFER_SQL = #{threshHoldReferSql,jdbcType=VARCHAR},
+      CHANGE_STATUS = #{changeStatus,jdbcType=DECIMAL},
+      PROJECT_SURPRESS = #{projectSurpress,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      DEALED_PROCESS_ALIAS = #{dealedProcessAlias,jdbcType=VARCHAR},
+      RELATION_NAME = #{relationName,jdbcType=VARCHAR},
+      WHILELIST_PROVINCE = #{whilelistProvince,jdbcType=VARCHAR},
+      BLACKLIST_PROVINCE = #{blacklistProvince,jdbcType=VARCHAR},
+      WHITELIST_PROVINCE = #{whitelistProvince,jdbcType=VARCHAR},
+      REASON_TYPE = #{reasonType,jdbcType=DECIMAL}
+    where SER_FILE_ID = #{serFileId,jdbcType=DECIMAL}
+  </update>
+  <resultMap id="BaseResultMap" type="com.mybatis.study.entity.RuleFile">
+    <id column="SER_FILE_ID" jdbcType="DECIMAL" property="serFileId" />
+    <result column="DIRECTORYS" jdbcType="VARCHAR" property="directorys" />
+    <result column="FILE_NAME" jdbcType="VARCHAR" property="fileName" />
+    <result column="OPT_PERSON" jdbcType="VARCHAR" property="optPerson" />
+    <result column="NEW_FILE" jdbcType="VARCHAR" property="newFile" />
+    <result column="CHANGE_TIME" jdbcType="TIMESTAMP" property="changeTime" />
+    <result column="IN_USE" jdbcType="CHAR" property="inUse" />
+    <result column="CHANGE_TIME_STR" jdbcType="VARCHAR" property="changeTimeStr" />
+    <result column="ALARM_ID_NUM" jdbcType="DECIMAL" property="alarmIdNum" />
+    <result column="RULE_NAME" jdbcType="VARCHAR" property="ruleName" />
+    <result column="RELATION_TYPE" jdbcType="DECIMAL" property="relationType" />
+    <result column="PROFESSIONAL_TYPE" jdbcType="DECIMAL" property="professionalType" />
+    <result column="VENDOR_ID" jdbcType="DECIMAL" property="vendorId" />
+    <result column="RULEDESC" jdbcType="VARCHAR" property="ruledesc" />
+    <result column="USER_ID" jdbcType="DECIMAL" property="userId" />
+    <result column="IS_LOCAL_RULE" jdbcType="CHAR" property="isLocalRule" />
+    <result column="RELATION_CONDITION" jdbcType="VARCHAR" property="relationCondition" />
+    <result column="RELATION_POSITION_INFO" jdbcType="VARCHAR" property="relationPositionInfo" />
+    <result column="USE_RESOURCES" jdbcType="VARCHAR" property="useResources" />
+    <result column="PRO_RESCONFIG" jdbcType="VARCHAR" property="proResconfig" />
+    <result column="EXT_RESCONFIG" jdbcType="VARCHAR" property="extResconfig" />
+    <result column="ALARM_CONTENT" jdbcType="VARCHAR" property="alarmContent" />
+    <result column="RULE_DEF_USER" jdbcType="VARCHAR" property="ruleDefUser" />
+    <result column="RULE_DEF_PHONE" jdbcType="VARCHAR" property="ruleDefPhone" />
+    <result column="EQP_OBJECT_CLASS" jdbcType="VARCHAR" property="eqpObjectClass" />
+    <result column="TOPIC_IDLIST" jdbcType="VARCHAR" property="topicIdlist" />
+    <result column="FILTER_ID" jdbcType="VARCHAR" property="filterId" />
+    <result column="PHONE_NUM" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="FIRE_POINT" jdbcType="DECIMAL" property="firePoint" />
+    <result column="ACTIVE_TIME_OUT" jdbcType="VARCHAR" property="activeTimeOut" />
+    <result column="COUNT_TYPE" jdbcType="DECIMAL" property="countType" />
+    <result column="THRESH_HOLD" jdbcType="DECIMAL" property="threshHold" />
+    <result column="THRESH_HOLD_REFER_SQL" jdbcType="VARCHAR" property="threshHoldReferSql" />
+    <result column="CHANGE_STATUS" jdbcType="DECIMAL" property="changeStatus" />
+    <result column="PROJECT_SURPRESS" jdbcType="DECIMAL" property="projectSurpress" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="DEALED_PROCESS_ALIAS" jdbcType="VARCHAR" property="dealedProcessAlias" />
+    <result column="RELATION_NAME" jdbcType="VARCHAR" property="relationName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SER_FILE_ID, DIRECTORYS, FILE_NAME, OPT_PERSON, NEW_FILE, CHANGE_TIME, IN_USE, CHANGE_TIME_STR, 
+    ALARM_ID_NUM, RULE_NAME, RELATION_TYPE, PROFESSIONAL_TYPE, VENDOR_ID, RULEDESC, USER_ID, 
+    IS_LOCAL_RULE, RELATION_CONDITION, RELATION_POSITION_INFO, USE_RESOURCES, PRO_RESCONFIG, 
+    EXT_RESCONFIG, ALARM_CONTENT, RULE_DEF_USER, RULE_DEF_PHONE, EQP_OBJECT_CLASS, TOPIC_IDLIST, 
+    FILTER_ID, PHONE_NUM, FIRE_POINT, ACTIVE_TIME_OUT, COUNT_TYPE, THRESH_HOLD, THRESH_HOLD_REFER_SQL, 
+    CHANGE_STATUS, PROJECT_SURPRESS, CREATE_TIME, DEALED_PROCESS_ALIAS, RELATION_NAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TFA_GAIA_RULE_FILE
+    where SER_FILE_ID = #{serFileId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from TFA_GAIA_RULE_FILE
+    where SER_FILE_ID = #{serFileId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.mybatis.study.entity.RuleFile">
+    insert into TFA_GAIA_RULE_FILE (SER_FILE_ID, DIRECTORYS, FILE_NAME, 
+      OPT_PERSON, NEW_FILE, CHANGE_TIME, 
+      IN_USE, CHANGE_TIME_STR, ALARM_ID_NUM, 
+      RULE_NAME, RELATION_TYPE, PROFESSIONAL_TYPE, 
+      VENDOR_ID, RULEDESC, USER_ID, 
+      IS_LOCAL_RULE, RELATION_CONDITION, RELATION_POSITION_INFO, 
+      USE_RESOURCES, PRO_RESCONFIG, EXT_RESCONFIG, 
+      ALARM_CONTENT, RULE_DEF_USER, RULE_DEF_PHONE, 
+      EQP_OBJECT_CLASS, TOPIC_IDLIST, FILTER_ID, 
+      PHONE_NUM, FIRE_POINT, ACTIVE_TIME_OUT, 
+      COUNT_TYPE, THRESH_HOLD, THRESH_HOLD_REFER_SQL, 
+      CHANGE_STATUS, PROJECT_SURPRESS, CREATE_TIME, 
+      DEALED_PROCESS_ALIAS, RELATION_NAME)
+    values (#{serFileId,jdbcType=DECIMAL}, #{directorys,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, 
+      #{optPerson,jdbcType=VARCHAR}, #{newFile,jdbcType=VARCHAR}, #{changeTime,jdbcType=TIMESTAMP}, 
+      #{inUse,jdbcType=CHAR}, #{changeTimeStr,jdbcType=VARCHAR}, #{alarmIdNum,jdbcType=DECIMAL}, 
+      #{ruleName,jdbcType=VARCHAR}, #{relationType,jdbcType=DECIMAL}, #{professionalType,jdbcType=DECIMAL}, 
+      #{vendorId,jdbcType=DECIMAL}, #{ruledesc,jdbcType=VARCHAR}, #{userId,jdbcType=DECIMAL}, 
+      #{isLocalRule,jdbcType=CHAR}, #{relationCondition,jdbcType=VARCHAR}, #{relationPositionInfo,jdbcType=VARCHAR}, 
+      #{useResources,jdbcType=VARCHAR}, #{proResconfig,jdbcType=VARCHAR}, #{extResconfig,jdbcType=VARCHAR}, 
+      #{alarmContent,jdbcType=VARCHAR}, #{ruleDefUser,jdbcType=VARCHAR}, #{ruleDefPhone,jdbcType=VARCHAR}, 
+      #{eqpObjectClass,jdbcType=VARCHAR}, #{topicIdlist,jdbcType=VARCHAR}, #{filterId,jdbcType=VARCHAR}, 
+      #{phoneNum,jdbcType=VARCHAR}, #{firePoint,jdbcType=DECIMAL}, #{activeTimeOut,jdbcType=VARCHAR}, 
+      #{countType,jdbcType=DECIMAL}, #{threshHold,jdbcType=DECIMAL}, #{threshHoldReferSql,jdbcType=VARCHAR}, 
+      #{changeStatus,jdbcType=DECIMAL}, #{projectSurpress,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{dealedProcessAlias,jdbcType=VARCHAR}, #{relationName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mybatis.study.entity.RuleFile">
+    insert into TFA_GAIA_RULE_FILE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serFileId != null">
+        SER_FILE_ID,
+      </if>
+      <if test="directorys != null">
+        DIRECTORYS,
+      </if>
+      <if test="fileName != null">
+        FILE_NAME,
+      </if>
+      <if test="optPerson != null">
+        OPT_PERSON,
+      </if>
+      <if test="newFile != null">
+        NEW_FILE,
+      </if>
+      <if test="changeTime != null">
+        CHANGE_TIME,
+      </if>
+      <if test="inUse != null">
+        IN_USE,
+      </if>
+      <if test="changeTimeStr != null">
+        CHANGE_TIME_STR,
+      </if>
+      <if test="alarmIdNum != null">
+        ALARM_ID_NUM,
+      </if>
+      <if test="ruleName != null">
+        RULE_NAME,
+      </if>
+      <if test="relationType != null">
+        RELATION_TYPE,
+      </if>
+      <if test="professionalType != null">
+        PROFESSIONAL_TYPE,
+      </if>
+      <if test="vendorId != null">
+        VENDOR_ID,
+      </if>
+      <if test="ruledesc != null">
+        RULEDESC,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="isLocalRule != null">
+        IS_LOCAL_RULE,
+      </if>
+      <if test="relationCondition != null">
+        RELATION_CONDITION,
+      </if>
+      <if test="relationPositionInfo != null">
+        RELATION_POSITION_INFO,
+      </if>
+      <if test="useResources != null">
+        USE_RESOURCES,
+      </if>
+      <if test="proResconfig != null">
+        PRO_RESCONFIG,
+      </if>
+      <if test="extResconfig != null">
+        EXT_RESCONFIG,
+      </if>
+      <if test="alarmContent != null">
+        ALARM_CONTENT,
+      </if>
+      <if test="ruleDefUser != null">
+        RULE_DEF_USER,
+      </if>
+      <if test="ruleDefPhone != null">
+        RULE_DEF_PHONE,
+      </if>
+      <if test="eqpObjectClass != null">
+        EQP_OBJECT_CLASS,
+      </if>
+      <if test="topicIdlist != null">
+        TOPIC_IDLIST,
+      </if>
+      <if test="filterId != null">
+        FILTER_ID,
+      </if>
+      <if test="phoneNum != null">
+        PHONE_NUM,
+      </if>
+      <if test="firePoint != null">
+        FIRE_POINT,
+      </if>
+      <if test="activeTimeOut != null">
+        ACTIVE_TIME_OUT,
+      </if>
+      <if test="countType != null">
+        COUNT_TYPE,
+      </if>
+      <if test="threshHold != null">
+        THRESH_HOLD,
+      </if>
+      <if test="threshHoldReferSql != null">
+        THRESH_HOLD_REFER_SQL,
+      </if>
+      <if test="changeStatus != null">
+        CHANGE_STATUS,
+      </if>
+      <if test="projectSurpress != null">
+        PROJECT_SURPRESS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="dealedProcessAlias != null">
+        DEALED_PROCESS_ALIAS,
+      </if>
+      <if test="relationName != null">
+        RELATION_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serFileId != null">
+        #{serFileId,jdbcType=DECIMAL},
+      </if>
+      <if test="directorys != null">
+        #{directorys,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="optPerson != null">
+        #{optPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="newFile != null">
+        #{newFile,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null">
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inUse != null">
+        #{inUse,jdbcType=CHAR},
+      </if>
+      <if test="changeTimeStr != null">
+        #{changeTimeStr,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmIdNum != null">
+        #{alarmIdNum,jdbcType=DECIMAL},
+      </if>
+      <if test="ruleName != null">
+        #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="relationType != null">
+        #{relationType,jdbcType=DECIMAL},
+      </if>
+      <if test="professionalType != null">
+        #{professionalType,jdbcType=DECIMAL},
+      </if>
+      <if test="vendorId != null">
+        #{vendorId,jdbcType=DECIMAL},
+      </if>
+      <if test="ruledesc != null">
+        #{ruledesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="isLocalRule != null">
+        #{isLocalRule,jdbcType=CHAR},
+      </if>
+      <if test="relationCondition != null">
+        #{relationCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="relationPositionInfo != null">
+        #{relationPositionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="useResources != null">
+        #{useResources,jdbcType=VARCHAR},
+      </if>
+      <if test="proResconfig != null">
+        #{proResconfig,jdbcType=VARCHAR},
+      </if>
+      <if test="extResconfig != null">
+        #{extResconfig,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmContent != null">
+        #{alarmContent,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDefUser != null">
+        #{ruleDefUser,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDefPhone != null">
+        #{ruleDefPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="eqpObjectClass != null">
+        #{eqpObjectClass,jdbcType=VARCHAR},
+      </if>
+      <if test="topicIdlist != null">
+        #{topicIdlist,jdbcType=VARCHAR},
+      </if>
+      <if test="filterId != null">
+        #{filterId,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="firePoint != null">
+        #{firePoint,jdbcType=DECIMAL},
+      </if>
+      <if test="activeTimeOut != null">
+        #{activeTimeOut,jdbcType=VARCHAR},
+      </if>
+      <if test="countType != null">
+        #{countType,jdbcType=DECIMAL},
+      </if>
+      <if test="threshHold != null">
+        #{threshHold,jdbcType=DECIMAL},
+      </if>
+      <if test="threshHoldReferSql != null">
+        #{threshHoldReferSql,jdbcType=VARCHAR},
+      </if>
+      <if test="changeStatus != null">
+        #{changeStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="projectSurpress != null">
+        #{projectSurpress,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealedProcessAlias != null">
+        #{dealedProcessAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="relationName != null">
+        #{relationName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mybatis.study.entity.RuleFile">
+    update TFA_GAIA_RULE_FILE
+    <set>
+      <if test="directorys != null">
+        DIRECTORYS = #{directorys,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="optPerson != null">
+        OPT_PERSON = #{optPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="newFile != null">
+        NEW_FILE = #{newFile,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null">
+        CHANGE_TIME = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inUse != null">
+        IN_USE = #{inUse,jdbcType=CHAR},
+      </if>
+      <if test="changeTimeStr != null">
+        CHANGE_TIME_STR = #{changeTimeStr,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmIdNum != null">
+        ALARM_ID_NUM = #{alarmIdNum,jdbcType=DECIMAL},
+      </if>
+      <if test="ruleName != null">
+        RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="relationType != null">
+        RELATION_TYPE = #{relationType,jdbcType=DECIMAL},
+      </if>
+      <if test="professionalType != null">
+        PROFESSIONAL_TYPE = #{professionalType,jdbcType=DECIMAL},
+      </if>
+      <if test="vendorId != null">
+        VENDOR_ID = #{vendorId,jdbcType=DECIMAL},
+      </if>
+      <if test="ruledesc != null">
+        RULEDESC = #{ruledesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="isLocalRule != null">
+        IS_LOCAL_RULE = #{isLocalRule,jdbcType=CHAR},
+      </if>
+      <if test="relationCondition != null">
+        RELATION_CONDITION = #{relationCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="relationPositionInfo != null">
+        RELATION_POSITION_INFO = #{relationPositionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="useResources != null">
+        USE_RESOURCES = #{useResources,jdbcType=VARCHAR},
+      </if>
+      <if test="proResconfig != null">
+        PRO_RESCONFIG = #{proResconfig,jdbcType=VARCHAR},
+      </if>
+      <if test="extResconfig != null">
+        EXT_RESCONFIG = #{extResconfig,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmContent != null">
+        ALARM_CONTENT = #{alarmContent,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDefUser != null">
+        RULE_DEF_USER = #{ruleDefUser,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDefPhone != null">
+        RULE_DEF_PHONE = #{ruleDefPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="eqpObjectClass != null">
+        EQP_OBJECT_CLASS = #{eqpObjectClass,jdbcType=VARCHAR},
+      </if>
+      <if test="topicIdlist != null">
+        TOPIC_IDLIST = #{topicIdlist,jdbcType=VARCHAR},
+      </if>
+      <if test="filterId != null">
+        FILTER_ID = #{filterId,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="firePoint != null">
+        FIRE_POINT = #{firePoint,jdbcType=DECIMAL},
+      </if>
+      <if test="activeTimeOut != null">
+        ACTIVE_TIME_OUT = #{activeTimeOut,jdbcType=VARCHAR},
+      </if>
+      <if test="countType != null">
+        COUNT_TYPE = #{countType,jdbcType=DECIMAL},
+      </if>
+      <if test="threshHold != null">
+        THRESH_HOLD = #{threshHold,jdbcType=DECIMAL},
+      </if>
+      <if test="threshHoldReferSql != null">
+        THRESH_HOLD_REFER_SQL = #{threshHoldReferSql,jdbcType=VARCHAR},
+      </if>
+      <if test="changeStatus != null">
+        CHANGE_STATUS = #{changeStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="projectSurpress != null">
+        PROJECT_SURPRESS = #{projectSurpress,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealedProcessAlias != null">
+        DEALED_PROCESS_ALIAS = #{dealedProcessAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="relationName != null">
+        RELATION_NAME = #{relationName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SER_FILE_ID = #{serFileId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mybatis.study.entity.RuleFile">
+    update TFA_GAIA_RULE_FILE
+    set DIRECTORYS = #{directorys,jdbcType=VARCHAR},
+      FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      OPT_PERSON = #{optPerson,jdbcType=VARCHAR},
+      NEW_FILE = #{newFile,jdbcType=VARCHAR},
+      CHANGE_TIME = #{changeTime,jdbcType=TIMESTAMP},
+      IN_USE = #{inUse,jdbcType=CHAR},
+      CHANGE_TIME_STR = #{changeTimeStr,jdbcType=VARCHAR},
+      ALARM_ID_NUM = #{alarmIdNum,jdbcType=DECIMAL},
+      RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+      RELATION_TYPE = #{relationType,jdbcType=DECIMAL},
+      PROFESSIONAL_TYPE = #{professionalType,jdbcType=DECIMAL},
+      VENDOR_ID = #{vendorId,jdbcType=DECIMAL},
+      RULEDESC = #{ruledesc,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      IS_LOCAL_RULE = #{isLocalRule,jdbcType=CHAR},
+      RELATION_CONDITION = #{relationCondition,jdbcType=VARCHAR},
+      RELATION_POSITION_INFO = #{relationPositionInfo,jdbcType=VARCHAR},
+      USE_RESOURCES = #{useResources,jdbcType=VARCHAR},
+      PRO_RESCONFIG = #{proResconfig,jdbcType=VARCHAR},
+      EXT_RESCONFIG = #{extResconfig,jdbcType=VARCHAR},
+      ALARM_CONTENT = #{alarmContent,jdbcType=VARCHAR},
+      RULE_DEF_USER = #{ruleDefUser,jdbcType=VARCHAR},
+      RULE_DEF_PHONE = #{ruleDefPhone,jdbcType=VARCHAR},
+      EQP_OBJECT_CLASS = #{eqpObjectClass,jdbcType=VARCHAR},
+      TOPIC_IDLIST = #{topicIdlist,jdbcType=VARCHAR},
+      FILTER_ID = #{filterId,jdbcType=VARCHAR},
+      PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+      FIRE_POINT = #{firePoint,jdbcType=DECIMAL},
+      ACTIVE_TIME_OUT = #{activeTimeOut,jdbcType=VARCHAR},
+      COUNT_TYPE = #{countType,jdbcType=DECIMAL},
+      THRESH_HOLD = #{threshHold,jdbcType=DECIMAL},
+      THRESH_HOLD_REFER_SQL = #{threshHoldReferSql,jdbcType=VARCHAR},
+      CHANGE_STATUS = #{changeStatus,jdbcType=DECIMAL},
+      PROJECT_SURPRESS = #{projectSurpress,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      DEALED_PROCESS_ALIAS = #{dealedProcessAlias,jdbcType=VARCHAR},
+      RELATION_NAME = #{relationName,jdbcType=VARCHAR}
+    where SER_FILE_ID = #{serFileId,jdbcType=DECIMAL}
+  </update>
+</mapper>
