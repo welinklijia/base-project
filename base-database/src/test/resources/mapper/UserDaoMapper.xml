@@ -10,15 +10,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
  		<result property="age" column="age"/>
  		<result property="valid" column="valid"/>
  		<result property="sex" column="sex" javaType="com.mybatis.study.constant.Sex" jdbcType="INTEGER" typeHandler="com.mybatis.study.SexHandleType"/>
- 		<collection property="listRole" column="id" javaType="ArrayList" ofType="roleEnity">
- 			<id property="id" column="id"/>
+ 		<!-- Mybatis一对多关联映射 -->
+ 		 <collection property="listRole" ofType="com.mybatis.study.entity.RoleEntity">
+ 			<result property="id" column="id"/>
  			<result property="roleName" column="rolename"/>
  			<result property="insertTime" column="inserttime"/>
- 			<result property="valid" column="valid"/>
+ 			<result property="vaild" column="valid"/>
  		</collection>
+ 		<!-- Mybatis一对一关联映射 -->
  	</resultMap>
 	<select id="findUserById" resultMap="userEntity">
-		select * from user where id = #{id}
+		select * from user u,role r,user_role ur where u.id=ur.user_id and r.id = ur.role_id and u.id = #{id}
 	</select>
  	<insert id="addUser" parameterType="com.mybatis.study.entity.UserEntity" useGeneratedKeys="true" keyProperty="id">
  		insert into user(username,password,age) values(#{username},#{password},#{age})

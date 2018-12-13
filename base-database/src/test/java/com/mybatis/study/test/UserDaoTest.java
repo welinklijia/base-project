@@ -1,25 +1,18 @@
 package com.mybatis.study.test;
 
-import java.io.IOException;
-import java.io.Reader;
-
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.mybatis.study.dao.UserDao;
 import com.mybatis.study.entity.UserEntity;
 
 public class UserDaoTest {
 	Logger logger = LoggerFactory.getLogger(UserDaoTest.class);
-	private int id = 1;
+	private int id = 3;
 	@Test
 	public void findUserById(){
-		SqlSession sqlSession = SqlSessionFactoryUtil.getSqlSessionFactory().openSession();
+		SqlSession sqlSession = SqlSessionFactoryUtil.getSqlSessionFactory().openSession(true);
 		UserDao userDao = sqlSession.getMapper(UserDao.class);
 		UserEntity userEntity = userDao.findUserById(id);
 		logger.info("查询结果:{}",userEntity);
@@ -43,11 +36,13 @@ public class UserDaoTest {
 		UserDao userDao = sqlSession.getMapper(UserDao.class);
 		UserEntity user = userDao.findUserById(id);
 		logger.info("将要修改的用户为:{}",user);
-		user.setUsername("upate");
-		user.setAge(1);
-		userDao.updateUser(user);
-		UserEntity updateuser = userDao.findUserById(id);
-		logger.info("修改后的用户为:{}",updateuser);
+		if(user!=null){
+			user.setUsername("upate");
+			user.setAge(1);
+			userDao.updateUser(user);
+			UserEntity updateuser = userDao.findUserById(id);
+			logger.info("修改后的用户为:{}",updateuser);
+		}
 		sqlSession.close();
 	}
 	@Test
