@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.mybatis.study.dao.UserDao;
 import com.mybatis.study.entity.UserEntity;
+import com.mybatis.test.util.SqlSessionFactoryUtil;
 
 public class UserDaoTest {
 	Logger logger = LoggerFactory.getLogger(UserDaoTest.class);
