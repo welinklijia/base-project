@@ -3,7 +3,27 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<!-- 注意configuration中各个属性配置的顺序应为：
+	properties,
+	settings,
+	typeAliases,
+	typeHandlers,
+	objectFactory,
+	objectWrapperFactory,
+	reflectorFactory,
+	plugins,
+	environments,
+	databaseIdProvider,
+	mappers)-->
   <properties resource="jdbc.properties"/>
+  <!-- 
+   <settings>
+   		<setting name="" value=""/>
+   </settings> -->
+   <typeAliases>
+   		<!-- 指定包下的对象别名，默认使用类名首字母小写作为别名 -->
+		<package name="com.mybatis.study.entity"/>
+	</typeAliases>
   <environments default="produce">
   <!-- 
   environments标签下可以配置多个environment,通过default属性与id属性匹配.
@@ -70,8 +90,22 @@
     </environment>
   </environments>
   <mappers>
+  	<!-- 
+     	mapper配置接口与mapper.xml文件的映射，有如下几种方式配置
+     	1.第一种方式：通过resource指定
+     	<mapper resource="mapper/UserDaoMapper.xml"/>
+     	2.通过class指定接口，进而将接口与对应的xml文件形成映射关系
+                      不过，使用这种方式必须保证 接口与mapper文件同名(不区分大小写)， 
+                       我这儿接口是UserDao,那么意味着mapper文件为UserDao.xml 
+        <mapper class="com.dy.dao.UserDao"/>
+        3.直接指定包，自动扫描，与方法二同理 
+        <package name="com.dy.dao"/>
+        4.第四种方式：通过url指定mapper文件位置
+      	 <mapper url="file://........"/>
+      -->
     <mapper resource="mapper/UserDaoMapper.xml"/>
     <mapper resource="mapper/RoleDaoMapper.xml"/>
+    <mapper resource="mapper/ResourceDaoMapper.xml"/>
   </mappers>
   
 </configuration>
