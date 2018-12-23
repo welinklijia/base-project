@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.dao.subdao.SubBaseDepartmentMapper">
+	<resultMap id="SubBaseDepartMentResultMap" type="com.base.entity.subtype.SubBaseDepartMent" extends="com.base.dao.BaseDepartmentMapper.BaseResultMap">
+		<association property="organization" javaType="com.base.entity.BaseOrganization"  
+		 resultMap="com.base.dao.BaseOrganizationMapper.BaseResultMap">
+		</association>
+		<!-- 一对多关联时，表id不能相同 -->
+		<collection property="listUser" ofType="com.base.entity.BaseUser" resultMap="com.base.dao.BaseUserMapper.BaseResultMap">
+		</collection>
+	</resultMap>
+	<select id="selecOrganizationById" resultMap="SubBaseDepartMentResultMap" parameterType="int">
+		SELECT * FROM 
+		base_department dpt 
+		LEFT JOIN base_organization orgn 
+		ON dpt.`organization_id` = orgn.`org_id` 
+		WHERE dpt.`depart_id` = #{id}
+	</select>
+	<select id="selectDepmentUser" resultMap="SubBaseDepartMentResultMap" parameterType="int">
+		SELECT
+		  *
+		FROM
+		  base_department dpt
+		  LEFT JOIN base_user bu
+    ON dpt.`depart_id` = bu.user_department_id where dpt.depart_id = #{id}
+	</select>
+	<select id="pageQuery" resultMap="SubBaseDepartMentResultMap">
+		select * from base_department limit #{arg0},#{arg1}
+	</select>
+</mapper>

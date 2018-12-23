@@ -1,18 +1,12 @@
 package com.mybatis.study.test;
-
-import java.io.IOException;
-import java.io.Reader;
-
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mybatis.study.dao.UserDao;
 import com.mybatis.study.entity.UserEntity;
+import com.mybatis.test.util.SqlSessionFactoryUtil;
 
 public class UserDaoTest {
 	Logger logger = LoggerFactory.getLogger(UserDaoTest.class);

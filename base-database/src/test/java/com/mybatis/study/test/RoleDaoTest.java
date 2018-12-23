@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import com.mybatis.study.dao.RoleDao;
 import com.mybatis.study.entity.RoleEntity;
+import com.mybatis.test.util.SqlSessionFactoryUtil;
 
 public class RoleDaoTest {
 	private static final Logger logger = LoggerFactory.getLogger(RoleDaoTest.class);

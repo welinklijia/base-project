@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.dao.BaseDepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.base.entity.BaseDepartment">
+    <id column="depart_id" jdbcType="INTEGER" property="departId" />
+    <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+    <result column="depart_create_time" jdbcType="TIMESTAMP" property="departCreateTime" />
+    <result column="depart_insert_time" jdbcType="TIMESTAMP" property="departInsertTime" />
+    <result column="organization_id" jdbcType="INTEGER" property="organizationId" />
+    <result column="depart_valid" jdbcType="SMALLINT" property="departValid" />
+    <result column="depart_parent_id" jdbcType="INTEGER" property="departParentId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    depart_id, department_name, depart_create_time, depart_insert_time, organization_id, 
+    depart_valid, depart_parent_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_department
+    where depart_id = #{departId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from base_department
+    where depart_id = #{departId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.base.entity.BaseDepartment">
+    insert into base_department (depart_id, department_name, depart_create_time, 
+      depart_insert_time, organization_id, depart_valid, 
+      depart_parent_id)
+    values (#{departId,jdbcType=INTEGER}, #{departmentName,jdbcType=VARCHAR}, #{departCreateTime,jdbcType=TIMESTAMP}, 
+      #{departInsertTime,jdbcType=TIMESTAMP}, #{organizationId,jdbcType=INTEGER}, #{departValid,jdbcType=SMALLINT}, 
+      #{departParentId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.base.entity.BaseDepartment">
+    insert into base_department
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="departId != null">
+        depart_id,
+      </if>
+      <if test="departmentName != null">
+        department_name,
+      </if>
+      <if test="departCreateTime != null">
+        depart_create_time,
+      </if>
+      <if test="departInsertTime != null">
+        depart_insert_time,
+      </if>
+      <if test="organizationId != null">
+        organization_id,
+      </if>
+      <if test="departValid != null">
+        depart_valid,
+      </if>
+      <if test="departParentId != null">
+        depart_parent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="departId != null">
+        #{departId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentName != null">
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="departCreateTime != null">
+        #{departCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departInsertTime != null">
+        #{departInsertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="organizationId != null">
+        #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="departValid != null">
+        #{departValid,jdbcType=SMALLINT},
+      </if>
+      <if test="departParentId != null">
+        #{departParentId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.base.entity.BaseDepartment">
+    update base_department
+    <set>
+      <if test="departmentName != null">
+        department_name = #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="departCreateTime != null">
+        depart_create_time = #{departCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departInsertTime != null">
+        depart_insert_time = #{departInsertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="organizationId != null">
+        organization_id = #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="departValid != null">
+        depart_valid = #{departValid,jdbcType=SMALLINT},
+      </if>
+      <if test="departParentId != null">
+        depart_parent_id = #{departParentId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where depart_id = #{departId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.base.entity.BaseDepartment">
+    update base_department
+    set department_name = #{departmentName,jdbcType=VARCHAR},
+      depart_create_time = #{departCreateTime,jdbcType=TIMESTAMP},
+      depart_insert_time = #{departInsertTime,jdbcType=TIMESTAMP},
+      organization_id = #{organizationId,jdbcType=INTEGER},
+      depart_valid = #{departValid,jdbcType=SMALLINT},
+      depart_parent_id = #{departParentId,jdbcType=INTEGER}
+    where depart_id = #{departId,jdbcType=INTEGER}
+  </update>
+</mapper>

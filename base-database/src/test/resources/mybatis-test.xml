@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <properties resource="jdbc.properties"/>
-  <environments default="produce">
+  <environments default="development">
   <!-- 
   environments标签下可以配置多个environment,通过default属性与id属性匹配.
   mybatis配置多个数据源,
@@ -13,7 +13,7 @@
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="${mysql.driver}"/>
-        <property name="url" value="${mysql.url}"/>
+        <property name="url" value="${mysql.test.url}"/>
         <property name="username" value="${mysql.username}"/>
         <property name="password" value="${mysql.password}"/>
       </dataSource>
@@ -70,8 +70,15 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="mapper/UserDaoMapper.xml"/>
-    <mapper resource="mapper/RoleDaoMapper.xml"/>
+    <mapper resource="mapper/BaseDepartmentMapper.xml"/>
+    <mapper resource="mapper/BaseOrganizationMapper.xml"/>
+    <mapper resource="mapper/BaseResourceMapper.xml"/>
+    <mapper resource="mapper/BaseRoleMapper.xml"/>
+    <mapper resource="mapper/BaseUserMapper.xml"/>
+    <mapper resource="mapper/submapper/SubBaseDepartmentMapper.xml"/>
+    <mapper resource="mapper/submapper/SubBaseResourceMapper.xml"/>
+    <mapper resource="mapper/submapper/SubBaseRoleMapper.xml"/>
+    <mapper resource="mapper/submapper/SubBaseUserMapper.xml"/>
   </mappers>
   
 </configuration>

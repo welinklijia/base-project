@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.dao.BaseOrganizationMapper">
+  <resultMap id="BaseResultMap" type="com.base.entity.BaseOrganization">
+    <id column="org_id" jdbcType="INTEGER" property="orgId" />
+    <result column="org_name" jdbcType="VARCHAR" property="orgName" />
+    <result column="org_create_time" jdbcType="TIMESTAMP" property="orgCreateTime" />
+    <result column="org_insert_time" jdbcType="TIMESTAMP" property="orgInsertTime" />
+    <result column="org_valid" jdbcType="SMALLINT" property="orgValid" />
+    <result column="org_parent_id" jdbcType="INTEGER" property="orgParentId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    org_id, org_name, org_create_time, org_insert_time, org_valid, org_parent_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_organization
+    where org_id = #{orgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from base_organization
+    where org_id = #{orgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.base.entity.BaseOrganization">
+    insert into base_organization (org_id, org_name, org_create_time, 
+      org_insert_time, org_valid, org_parent_id
+      )
+    values (#{orgId,jdbcType=INTEGER}, #{orgName,jdbcType=VARCHAR}, #{orgCreateTime,jdbcType=TIMESTAMP}, 
+      #{orgInsertTime,jdbcType=TIMESTAMP}, #{orgValid,jdbcType=SMALLINT}, #{orgParentId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.base.entity.BaseOrganization">
+    insert into base_organization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="orgName != null">
+        org_name,
+      </if>
+      <if test="orgCreateTime != null">
+        org_create_time,
+      </if>
+      <if test="orgInsertTime != null">
+        org_insert_time,
+      </if>
+      <if test="orgValid != null">
+        org_valid,
+      </if>
+      <if test="orgParentId != null">
+        org_parent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orgId != null">
+        #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCreateTime != null">
+        #{orgCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgInsertTime != null">
+        #{orgInsertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgValid != null">
+        #{orgValid,jdbcType=SMALLINT},
+      </if>
+      <if test="orgParentId != null">
+        #{orgParentId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.base.entity.BaseOrganization">
+    update base_organization
+    <set>
+      <if test="orgName != null">
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCreateTime != null">
+        org_create_time = #{orgCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgInsertTime != null">
+        org_insert_time = #{orgInsertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgValid != null">
+        org_valid = #{orgValid,jdbcType=SMALLINT},
+      </if>
+      <if test="orgParentId != null">
+        org_parent_id = #{orgParentId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where org_id = #{orgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.base.entity.BaseOrganization">
+    update base_organization
+    set org_name = #{orgName,jdbcType=VARCHAR},
+      org_create_time = #{orgCreateTime,jdbcType=TIMESTAMP},
+      org_insert_time = #{orgInsertTime,jdbcType=TIMESTAMP},
+      org_valid = #{orgValid,jdbcType=SMALLINT},
+      org_parent_id = #{orgParentId,jdbcType=INTEGER}
+    where org_id = #{orgId,jdbcType=INTEGER}
+  </update>
+</mapper>
