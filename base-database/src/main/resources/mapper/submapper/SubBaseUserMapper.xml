@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.base.dao.subdao.SubBaseUserMapper">
+	<resultMap type="com.base.entity.subtype.SubBaseUser" id="subBaseUser" extends="com.base.dao.BaseUserMapper.BaseResultMap">
+		<association property="department" javaType="com.base.entity.BaseDepartment" resultMap="com.base.dao.BaseDepartmentMapper.BaseResultMap"></association>
+		<collection property="listRole" ofType="com.base.entity.BaseRole" resultMap="com.base.dao.BaseRoleMapper.BaseResultMap"></collection>
+	</resultMap>
+	<resultMap type="com.base.entity.BaseUser" id="baseUser" extends="com.base.dao.BaseUserMapper.BaseResultMap"></resultMap>
+	<select id="selectUserByName" resultMap="baseUser">
+		select u.* from base_user u where u.user_name=#{userName}
+	</select>
+	<select id="selectSubBaseUser" resultMap="subBaseUser">
+		SELECT
+		  u.*,d.*,r.*
+		FROM
+		  base_user u,
+		  base_department d,
+		  base_role r,
+		  user_role ur
+		WHERE u.`user_department_id` = d.`depart_id`
+		  AND u.`user_id` = ur.`user_id`
+		  AND ur.`role_id` = r.`role_id` 
+		  AND u.`user_name`=#{userName}
+	</select>
+	<select id="pageQuery" resultMap="baseUser">
+		select u.* from base_user u limit #{arg0},#{arg1}
+	</select>
 
 </mapper>

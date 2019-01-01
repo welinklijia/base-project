@@ -99,9 +99,14 @@ CREATE TABLE `base_role` (
   `role_insert_time` datetime DEFAULT NULL,
   `role_valid` smallint(6) DEFAULT '1',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `base_role` */
+
+insert  into `base_role`(`role_id`,`role_name`,`role_descripse`,`role_create_time`,`role_insert_time`,`role_valid`) values 
+(1,'超级管理员','拥有系统的所有功能操作权限','2018-12-30 18:14:03','2018-12-30 18:14:07',1),
+(2,'管理员','管理员权限','2018-12-30 18:14:10','2018-12-30 18:14:12',1),
+(3,'普通用户','普通操作权限','2018-12-30 18:14:16','2018-12-30 18:14:18',1);
 
 /*Table structure for table `base_user` */
 
@@ -115,9 +120,10 @@ CREATE TABLE `base_user` (
   `user_insert_time` datetime DEFAULT NULL,
   `user_department_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_name` (`user_name`),
   KEY `department_id` (`user_department_id`),
   CONSTRAINT `base_user_ibfk_1` FOREIGN KEY (`user_department_id`) REFERENCES `base_department` (`depart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `base_user` */
 
@@ -148,13 +154,19 @@ DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE `user_role` (
   `user_id` bigint(20) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `valid` smallint(6) DEFAULT NULL,
+  `valid` smallint(6) DEFAULT '1',
   `update_time` datetime DEFAULT NULL,
   `insert_time` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `user_role` */
+
+insert  into `user_role`(`user_id`,`role_id`,`valid`,`update_time`,`insert_time`) values 
+(2,2,1,'2018-12-30 18:15:55','2018-12-30 18:15:58'),
+(2,3,1,'2018-12-30 18:16:09','2018-12-30 18:16:01'),
+(3,2,1,NULL,NULL),
+(3,3,1,'2018-12-30 18:16:14','2018-12-30 18:16:06');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

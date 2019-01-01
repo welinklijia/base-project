@@ -12,3 +12,8 @@
 /base-database/.settings
 /base-database/.classpath
 /base-database/.project
+/base-service/.classpath
+/base-service/.project
+/base-service/.settings/org.eclipse.core.resources.prefs
+/base-service/.settings/org.eclipse.jdt.core.prefs
+/base-service/.settings/org.eclipse.m2e.core.prefs

@@ -1,13 +1,16 @@
 package com.mybatis.base.subtest;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.base.dao.subdao.SubBaseUserMapper;
+import com.base.entity.BaseRole;
 import com.base.entity.BaseUser;
+import com.base.entity.subtype.SubBaseUser;
 import com.mybatis.test.util.SqlSessionFactoryUtil;
 
 public class SubUserMapperTest {
@@ -44,7 +47,60 @@ public class SubUserMapperTest {
 		}finally{
 			sqlSession.close();
 		}
-		
-		
+	}
+	@Test
+	public void testSelectSubBaseUser(){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = SqlSessionFactoryUtil.getBaseSqlSessionFactory().openSession(true);
+			SubBaseUserMapper subBaseUserMapper = sqlSession.getMapper(SubBaseUserMapper.class);
+			SubBaseUser subBaseUser = subBaseUserMapper.selectSubBaseUser("lisi");
+			System.out.println("用户名:"+subBaseUser.getUserName()+",用户所在部门:"+subBaseUser.getDepartment().getDepartmentName());
+			List<BaseRole> list = subBaseUser.getListRole();
+			for(BaseRole baseRole : list){
+				System.out.println(baseRole.getRoleName()+"，角色描述："+baseRole.getRoleDescripse());
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	}
+	@Test
+	public void testSelectUserByName(){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = SqlSessionFactoryUtil.getBaseSqlSessionFactory().openSession(true);
+			SubBaseUserMapper subBaseUserMapper = sqlSession.getMapper(SubBaseUserMapper.class);
+			BaseUser baseUser = subBaseUserMapper.selectUserByName("lisi");
+			System.out.println("用户名密码:"+baseUser.getUserPassword());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	}
+	@Test
+	public void testPageQuery(){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = SqlSessionFactoryUtil.getBaseSqlSessionFactory().openSession(true);
+			SubBaseUserMapper subBaseUserMapper = sqlSession.getMapper(SubBaseUserMapper.class);
+			int n = 1;
+			int everyPageCount = 4;
+			int currentPageCount=(n-1)*everyPageCount;
+			List<BaseUser> list = subBaseUserMapper.pageQuery(currentPageCount, everyPageCount);
+			for(BaseUser user : list){
+				System.out.println("用户名:"+user.getUserName()+"密码:"+user.getUserPassword());
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
 	}
 }
