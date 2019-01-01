@@ -19,7 +19,7 @@ public class SubUserMapperTest {
 	public void insertUserTest(){
 		SqlSession sqlSession = null;
 		try {
-			sqlSession = SqlSessionFactoryUtil.getBaseSqlSessionFactory().openSession(true);
+			sqlSession = SqlSessionFactoryUtil.getBaseSqlSessionFactory().openSession();
 			SubBaseUserMapper subBaseUserMapper = sqlSession.getMapper(SubBaseUserMapper.class);
 			BaseUser user = new BaseUser();
 			user.setUserName("zhangsan");

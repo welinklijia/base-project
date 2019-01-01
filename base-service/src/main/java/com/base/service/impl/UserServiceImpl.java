@@ -9,7 +9,11 @@ import com.base.service.UserService;
 
 public class UserServiceImpl implements UserService {
 	private SubBaseUserMapper subBaseUserMapper;
-
+	
+	@Override
+	public void addBaseUser(BaseUser baseUser) {
+		subBaseUserMapper.insertSelective(baseUser);
+	}
 	@Override
 	public BaseUser findUserByName(String userName) {
 		return subBaseUserMapper.selectUserByName(userName);

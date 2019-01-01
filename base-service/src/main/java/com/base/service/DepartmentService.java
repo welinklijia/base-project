@@ -1,5 +1,7 @@
 package com.base.service;
 
-public interface DepartmentService {
+import com.base.entity.BaseDepartment;
 
+public interface DepartmentService {
+	public void addDepartment(BaseDepartment department);
 }

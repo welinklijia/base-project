@@ -17,3 +17,5 @@
 /base-service/.settings/org.eclipse.core.resources.prefs
 /base-service/.settings/org.eclipse.jdt.core.prefs
 /base-service/.settings/org.eclipse.m2e.core.prefs
+/base-service/.settings
+/base-service/.settings/*.prefs
