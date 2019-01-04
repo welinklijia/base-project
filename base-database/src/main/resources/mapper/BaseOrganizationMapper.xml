@@ -23,19 +23,20 @@
     where org_id = #{orgId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.base.entity.BaseOrganization">
-    insert into base_organization (org_id, org_name, org_create_time, 
-      org_insert_time, org_valid, org_parent_id
-      )
-    values (#{orgId,jdbcType=INTEGER}, #{orgName,jdbcType=VARCHAR}, #{orgCreateTime,jdbcType=TIMESTAMP}, 
-      #{orgInsertTime,jdbcType=TIMESTAMP}, #{orgValid,jdbcType=SMALLINT}, #{orgParentId,jdbcType=INTEGER}
-      )
+    <selectKey keyProperty="orgId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into base_organization (org_name, org_create_time, org_insert_time, 
+      org_valid, org_parent_id)
+    values (#{orgName,jdbcType=VARCHAR}, #{orgCreateTime,jdbcType=TIMESTAMP}, #{orgInsertTime,jdbcType=TIMESTAMP}, 
+      #{orgValid,jdbcType=SMALLINT}, #{orgParentId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.base.entity.BaseOrganization">
+    <selectKey keyProperty="orgId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into base_organization
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="orgId != null">
-        org_id,
-      </if>
       <if test="orgName != null">
         org_name,
       </if>
@@ -53,9 +54,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="orgId != null">
-        #{orgId,jdbcType=INTEGER},
-      </if>
       <if test="orgName != null">
         #{orgName,jdbcType=VARCHAR},
       </if>

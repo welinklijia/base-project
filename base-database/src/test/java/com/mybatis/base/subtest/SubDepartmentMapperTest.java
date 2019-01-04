@@ -5,8 +5,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.base.dao.BaseOrganizationMapper;
 import com.base.dao.subdao.SubBaseDepartmentMapper;
 import com.base.entity.BaseDepartment;
+import com.base.entity.BaseOrganization;
 import com.base.entity.BaseUser;
 import com.base.entity.subtype.SubBaseDepartMent;
 import com.mybatis.test.util.SqlSessionFactoryUtil;
@@ -17,28 +20,26 @@ public class SubDepartmentMapperTest {
 	public void testInsert(){
 		SqlSession sqlSession = null;
 		try {
-			sqlSession = SqlSessionFactoryUtil.getBaseSqlSessionFactory().openSession(true);
+			sqlSession = SqlSessionFactoryUtil.getBaseSqlSessionFactory().openSession();
 			SubBaseDepartmentMapper subBaseDepartmentMapper = sqlSession.getMapper(SubBaseDepartmentMapper.class);
+			BaseOrganizationMapper baseOrganizationMapper = sqlSession.getMapper(BaseOrganizationMapper.class);
+			
+			BaseOrganization organization = new BaseOrganization();
+			organization.setOrgName("北极太阳能有限公司");
+			organization.setOrgCreateTime(new Date());
+			organization.setOrgInsertTime(new Date());
+			baseOrganizationMapper.insertSelective(organization);
+			
 			BaseDepartment department = new BaseDepartment();
-			department.setDepartmentName("综合监控");
-			department.setOrganizationId(1);
+			department.setDepartmentName("能源监控");
+			department.setOrganizationId(organization.getOrgId());
 			department.setDepartInsertTime(new Date());
 			department.setDepartCreateTime(new Date());
-			BaseDepartment department1 = new BaseDepartment();
-			department1.setDepartmentName("综合资源");
-			department1.setOrganizationId(1);
-			department1.setDepartInsertTime(new Date());
-			department1.setDepartCreateTime(new Date());
-			BaseDepartment department2 = new BaseDepartment();
-			department2.setDepartmentName("综合激活");
-			department2.setOrganizationId(1);
-			department2.setDepartInsertTime(new Date());
-			department2.setDepartCreateTime(new Date());
 			subBaseDepartmentMapper.insertSelective(department);
-			subBaseDepartmentMapper.insertSelective(department1);
-			subBaseDepartmentMapper.insertSelective(department2);
+			sqlSession.commit();
 		} catch (Exception e) {
 			logger.error("错误信息:{0}",e);
+			sqlSession.rollback();
 		}finally{
 			sqlSession.close();
 		}

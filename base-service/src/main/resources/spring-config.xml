@@ -69,21 +69,29 @@
       		<!-- 指定mapper目录下以及子目录下的所有mapper.xml -->
       		<property name="mapperLocations" value="classpath*:mapper/**/*.xml"></property>
       </bean>
-      <!-- dao层通过spring配置 ，配置方法参考mybatis-spring说明-->
+      <!-- dao层通过spring配置1 ，配置方法参考mybatis-spring的MapperFactoryBean说明
       <bean id="baseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" abstract="true" lazy-init="true">
       		<property name="sqlSessionFactory" ref="sqlSessionBuilder" />
       </bean>
-      <bean id="subBaseUserMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseMapper">
+      <bean id="subBaseUserMapper" parent="baseMapper">
       		<property name="mapperInterface" value="com.base.dao.subdao.SubBaseUserMapper"/>
       </bean>
-      <bean id="subBaseDepartmentMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseMapper">
+      <bean id="subBaseDepartmentMapper" parent="baseMapper">
       		<property name="mapperInterface" value="com.base.dao.subdao.SubBaseDepartmentMapper"/>
+      </bean>-->
+      <!-- dao层通过spring配置2（扫描指定目录下的接口，以接口名首字母小写作为bean的名称），配置方法参考mybatis-spring的 MapperScannerConfigurer
+      	会扫描指定目录下的接口，加载到spring容器中，以类名首字母小写作为名称。需要配置basePackage属性，多个值用逗号或分号分隔
+      -->
+      <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	        <property name="basePackage" value="com.base.dao" />
       </bean>
       <!-- service层通过spring配置 -->
       <bean id="userService" class="com.base.service.impl.UserServiceImpl">
-      	<property name="subBaseUserMapper" ref="subBaseUserMapper"/>
+      		<property name="subBaseUserMapper" ref="subBaseUserMapper"/>
+      		<property name="subBaseDepartmentMapper" ref="subBaseDepartmentMapper"/>
+      		<property name="subBaseRoleMapper" ref="subBaseRoleMapper"/>
       </bean>
       <bean id="departmentService" class="com.base.service.impl.DepartmentServiceImpl">
-      	<property name="subBaseDepartmentMapper" ref="subBaseDepartmentMapper"/>
+      		<property name="subBaseDepartmentMapper" ref="subBaseDepartmentMapper"/>
       </bean>
 </beans>

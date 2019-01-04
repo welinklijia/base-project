@@ -75,10 +75,12 @@
     <mapper resource="mapper/BaseResourceMapper.xml"/>
     <mapper resource="mapper/BaseRoleMapper.xml"/>
     <mapper resource="mapper/BaseUserMapper.xml"/>
+    <mapper resource="mapper/BaseOrganizationMapper.xml"/>
     <mapper resource="mapper/submapper/SubBaseDepartmentMapper.xml"/>
     <mapper resource="mapper/submapper/SubBaseResourceMapper.xml"/>
     <mapper resource="mapper/submapper/SubBaseRoleMapper.xml"/>
     <mapper resource="mapper/submapper/SubBaseUserMapper.xml"/>
+    <mapper resource="mapper/submapper/SubBaseOrganizationMapper.xml"/> 
   </mappers>
   
 </configuration>

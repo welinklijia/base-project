@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.dao.subdao.SubBaseOrganizationMapper">
+<resultMap type="com.base.entity.subtype.SubBaseOrganization" id="subBaseOrganization" extends="com.base.dao.BaseOrganizationMapper.BaseResultMap">
+	<collection property="listBaseDepart" ofType="com.base.entity.BaseDepartment" resultMap="com.base.dao.BaseDepartmentMapper.BaseResultMap"></collection>
+</resultMap>
+<select id="selectBaseOrganizationDeparts" resultMap="subBaseOrganization">
+	SELECT 
+  		* 
+	FROM
+	  base_organization org,
+	  base_department dep 
+	WHERE dep.`organization_id` = org.`org_id` 
+	  AND org.`org_id` =#{orgId}
+
+</select>
+<select id="selectSonBaseOrganizations" resultMap="com.base.dao.BaseOrganizationMapper.BaseResultMap">
+	select org.* from base_organization org where org.org_parent_id = #{orgId}
+</select>
+<select id="pageQuery" resultMap="com.base.dao.BaseOrganizationMapper.BaseResultMap">
+	select org.* from base_organization org limit #{arg0},#{arg1}
+</select>
+</mapper>

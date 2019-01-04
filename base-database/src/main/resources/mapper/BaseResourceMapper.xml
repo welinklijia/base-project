@@ -26,19 +26,22 @@
     where resource_id = #{resourceId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.base.entity.BaseResource">
-    insert into base_resource (resource_id, resource_name, resource_url, 
-      resource_parent_id, resource_type, resource_update_time, 
-      resource_insert_time, resource_valid)
-    values (#{resourceId,jdbcType=INTEGER}, #{resourceName,jdbcType=VARCHAR}, #{resourceUrl,jdbcType=VARCHAR}, 
-      #{resourceParentId,jdbcType=INTEGER}, #{resourceType,jdbcType=INTEGER}, #{resourceUpdateTime,jdbcType=TIMESTAMP}, 
-      #{resourceInsertTime,jdbcType=TIMESTAMP}, #{resourceValid,jdbcType=SMALLINT})
+    <selectKey keyProperty="resourceId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into base_resource (resource_name, resource_url, resource_parent_id, 
+      resource_type, resource_update_time, resource_insert_time, 
+      resource_valid)
+    values (#{resourceName,jdbcType=VARCHAR}, #{resourceUrl,jdbcType=VARCHAR}, #{resourceParentId,jdbcType=INTEGER}, 
+      #{resourceType,jdbcType=INTEGER}, #{resourceUpdateTime,jdbcType=TIMESTAMP}, #{resourceInsertTime,jdbcType=TIMESTAMP}, 
+      #{resourceValid,jdbcType=SMALLINT})
   </insert>
   <insert id="insertSelective" parameterType="com.base.entity.BaseResource">
+    <selectKey keyProperty="resourceId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into base_resource
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="resourceId != null">
-        resource_id,
-      </if>
       <if test="resourceName != null">
         resource_name,
       </if>
@@ -62,9 +65,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="resourceId != null">
-        #{resourceId,jdbcType=INTEGER},
-      </if>
       <if test="resourceName != null">
         #{resourceName,jdbcType=VARCHAR},
       </if>

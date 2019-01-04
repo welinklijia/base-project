@@ -25,19 +25,22 @@
     where depart_id = #{departId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.base.entity.BaseDepartment">
-    insert into base_department (depart_id, department_name, depart_create_time, 
+    <selectKey keyProperty="departId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into base_department (department_name, depart_create_time, 
       depart_insert_time, organization_id, depart_valid, 
       depart_parent_id)
-    values (#{departId,jdbcType=INTEGER}, #{departmentName,jdbcType=VARCHAR}, #{departCreateTime,jdbcType=TIMESTAMP}, 
+    values (#{departmentName,jdbcType=VARCHAR}, #{departCreateTime,jdbcType=TIMESTAMP}, 
       #{departInsertTime,jdbcType=TIMESTAMP}, #{organizationId,jdbcType=INTEGER}, #{departValid,jdbcType=SMALLINT}, 
       #{departParentId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.base.entity.BaseDepartment">
+    <selectKey keyProperty="departId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into base_department
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="departId != null">
-        depart_id,
-      </if>
       <if test="departmentName != null">
         department_name,
       </if>
@@ -58,9 +61,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="departId != null">
-        #{departId,jdbcType=INTEGER},
-      </if>
       <if test="departmentName != null">
         #{departmentName,jdbcType=VARCHAR},
       </if>

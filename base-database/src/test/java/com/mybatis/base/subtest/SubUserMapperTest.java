@@ -16,6 +16,26 @@ import com.mybatis.test.util.SqlSessionFactoryUtil;
 public class SubUserMapperTest {
 	private static final Logger logger = LoggerFactory.getLogger(SubUserMapperTest.class);
 	@Test
+	public void insertUsers(){
+
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = SqlSessionFactoryUtil.getBaseSqlSessionFactory().openSession();
+			BaseUser user = new BaseUser();
+			user.setUserName("csdnshabi");
+			user.setUserPassword("123456");
+			user.setUserDepartmentId(2);
+			user.setUserInsertTime(new Date());
+			user.setUserRegisterTime(new Date());
+			sqlSession.insert("com.base.dao.BaseUserMapper.insertSelective", user);
+		} catch (Exception e) {
+			logger.info("错误信息:{0}", e);
+		}finally{
+			sqlSession.close();
+		}
+	
+	}
+	@Test
 	public void insertUserTest(){
 		SqlSession sqlSession = null;
 		try {

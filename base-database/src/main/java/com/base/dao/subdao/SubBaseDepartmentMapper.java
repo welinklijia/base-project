@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.base.dao.BaseDepartmentMapper;
 import com.base.entity.BaseDepartment;
-import com.base.entity.BaseUser;
 import com.base.entity.subtype.SubBaseDepartMent;
 
 public interface SubBaseDepartmentMapper extends BaseDepartmentMapper {

@@ -33,11 +33,25 @@
             <property name="enableSubPackages" value="true" />  
         </javaClientGenerator>  
         <!-- 要生成那些表(更改tableName和domainObjectName就可以) -->  
-        <table tableName="base_department" domainObjectName="BaseDepartment" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />  
-        <table tableName="base_organization" domainObjectName="BaseOrganization" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />  
-        <table tableName="base_user" domainObjectName="BaseUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />  
-        <table tableName="base_role" domainObjectName="BaseRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />  
-        <table tableName="base_resource" domainObjectName="BaseResource" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />  
+        <table tableName="base_department" domainObjectName="BaseDepartment" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        	<generatedKey column="depart_id" sqlStatement="Mysql" identity="true"/>
+        </table>  
+        <table tableName="base_organization" domainObjectName="BaseOrganization" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        	<generatedKey column="org_id" sqlStatement="Mysql" identity="true"/>
+        </table>  
+        <table tableName="base_user" domainObjectName="BaseUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        	<generatedKey column="user_id" sqlStatement="Mysql" identity="true"/>
+        </table>  
+        <table tableName="base_role" domainObjectName="BaseRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        	<generatedKey column="role_id" sqlStatement="Mysql" identity="true"/>
+        </table>  
+        <table tableName="base_resource" domainObjectName="BaseResource" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        	<generatedKey column="resource_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="user_role" domainObjectName="UserRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="role_resource" domainObjectName="RoleResource" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>  
         <!-- <table tableName="course_info" domainObjectName="CourseInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />  
         <table tableName="course_user_info" domainObjectName="CourseUserInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" /> -->  
     </context>  
